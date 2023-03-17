@@ -1,0 +1,8 @@
+//REXEXC01 JOB 0,'BATCH IVP',CLASS=A,MSGCLASS=X,NOTIFY=&SYSUID          00010001
+//*                                                                     00020001
+//REXJ     EXEC PGM=IKJEFT01,DYNAMNBR=45                                00050000
+//SYSPROC  DD DISP=SHR,DSN=ADCDH.CICD.JOBS                              00060001
+//SYSTSPRT DD SYSOUT=*                                                  00070000
+//SYSTSIN  DD *                                                         00080000
+%SMPREX01                                                               00090000
+//*                                                                     00100000

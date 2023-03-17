@@ -1,0 +1,15 @@
+//REXEXC00 JOB 0,'BATCH IVP',CLASS=A,MSGCLASS=X,NOTIFY=&SYSUID          00030001
+//*                                                                     00040001
+//REXJ     EXEC PGM=IKJEFT01,DYNAMNBR=45                                00070000
+//SYSPROC  DD DISP=SHR,DSN=ADCDH.CICD.JOBS                              00080002
+//SYSTSPRT DD SYSOUT=*                                                  00090000
+//SYSTSIN  DD *                                                         00100000
+%SMPREX00                                                               00110001
+//*                                                                     00120000
+//IDCAMS   EXEC PGM=IDCAMS,COND=(0,NE,REXJ)                             00130000
+//SYSPRINT DD SYSOUT=*                                                  00140000
+//SYSOUT   DD SYSOUT=*                                                  00150000
+//SYSIN    DD *                                                         00160000
+  SET MAXCC=1                                                           00170001
+//*                                                                     00180000
+//                                                                      00190001
