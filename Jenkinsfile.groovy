@@ -1,5 +1,5 @@
 pipeline {
-        agent Agent2
+        agent any
         stages {
             stage('Test_gitsync_3') {
                 steps {
