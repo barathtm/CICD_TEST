@@ -1,0 +1,34 @@
+//TERSEQ   JOB (,),REGION=0M,NOTIFY=&SYSUID,CLASS=A
+//****************************************************
+//TERSE1   EXEC PGM=TRSMAIN,PARM=PACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=DMFU.D.DMFU.JCL
+//OUTFILE  DD DSN=DMFU.TERSED.D.DMFU.JCL,
+//            VOL=SER=SAN001,UNIT=SYSDA,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1))
+//****************************************************
+//TERSE2   EXEC PGM=TRSMAIN,PARM=PACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=DMFU.D.DMFU.PROCLIB
+//OUTFILE  DD DSN=DMFU.TERSED.D.DMFU.PROCLIB,
+//            VOL=SER=SAN001,UNIT=SYSDA,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1))
+//****************************************************
+//TERSE3   EXEC PGM=TRSMAIN,PARM=PACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=DMFU.D.DMFU.REXX
+//OUTFILE  DD DSN=DMFU.TERSED.D.DMFU.REXX,
+//            VOL=SER=SAN001,UNIT=SYSDA,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1))
+//****************************************************
+//TERSE4   EXEC PGM=TRSMAIN,PARM=PACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=DMFU.D.DMFU.LOAD
+//OUTFILE  DD DSN=DMFU.TERSED.D.DMFU.LOAD,
+//            VOL=SER=SAN001,UNIT=SYSDA,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1))
+//****************************************************
