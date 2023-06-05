@@ -15,9 +15,11 @@ for /F "usebackq delims=" %%G in ("dsnames") do (
     echo open 10.10.1.180 > "%FTPFILE%"
     echo ibmuser >> "%FTPFILE%"
     echo sandhata >> "%FTPFILE%"
-    echo cd /u/ibmuser/git-sync-test/ >> "%FTPFILE%" 
+    echo cd /u/ibmuser/git-sync-test/>> "%FTPFILE%" 
+    echo if not exist "!folder!" mkdir "!folder!"
+    echo cd !folder!/
     echo prompt >> "%FTPFILE%" 
-    echo PUT !folder!>> "%FTPFILE%"
+    echo mput * >> "%FTPFILE%"
     echo quit >> "%FTPFILE%"
     
     ftp -s:C:\Barath\GitHub\CICD_TEST\FTP.txt
