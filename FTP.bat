@@ -17,6 +17,7 @@ for /F "usebackq delims=" %%G in ("dsnames") do (
     echo prompt >> "%FTPFILE%" 
     echo mget * >> "%FTPFILE%"
     echo quit >> "%FTPFILE%"
+    cd "%CURRENTDIR%\!folder!"
 
     ftp -s:C:\Barath\GitHub\CICD_TEST\FTP.txt
     del C:\Barath\GitHub\CICD_TEST\FTP.txt
