@@ -1,0 +1,6 @@
+open 10.10.1.180
+ibmuser
+sandhata
+cd /u/ibmuser/git-sync-test/
+put dsnames
+quit
