@@ -1,0 +1,39 @@
+//ADCDCTRS JOB (,),REGION=0M,NOTIFY=&SYSUID,CLASS=A,TYPRUN=SCAN
+//****************************************************
+//* INFILE (uploaded name) &HLQ.&COMPANY..&LEV..DMFU.********.TERSED
+// SET HLQ=set_this
+// SET COMPANY=set_this
+// SET LEV=set_this
+//* OUTFILE (target name)  &COMPHLQ..&COMPLEV2..DMFU.********&SUFFIX
+// SET COMPHLQ=set_this
+// SET COMPLEV2=set_this
+// SET SUFFIX=.UNTERSEDset_this
+//****************************************************
+//UNTERSE1 EXEC PGM=TRSMAIN,PARM=UNPACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=&HLQ..&COMPANY..&LEV..DMFU.JCL.TERSED
+//OUTFILE  DD DSN=&COMPHLQ..&COMPLEV2..DMFU.JCL&SUFFIX,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1,10))
+//****************************************************
+//UNTERSEQ EXEC PGM=TRSMAIN,PARM=UNPACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=&HLQ..&COMPANY..&LEV..DMFU.PROCLIB.TERSED
+//OUTFILE  DD DSN=&COMPHLQ..&COMPLEV2..DMFU.PROCLIB&SUFFIX,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1,10))
+//****************************************************
+//UNTERSEQ EXEC PGM=TRSMAIN,PARM=UNPACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=&COMPHLQ..&COMPLEV2..DMFU.REXX.TERSED
+//OUTFILE  DD DSN=&COMPHLQ..&COMPLEV2..DMFU.REXX&SUFFIX,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1,10))
+//****************************************************
+//UNTERSEQ EXEC PGM=TRSMAIN,PARM=UNPACK
+//SYSPRINT DD SYSOUT=*
+//INFILE   DD DISP=SHR,DSN=&COMPHLQ..&COMPLEV2..DMFU.LOAD.TERSED
+//OUTFILE  DD DSN=&COMPHLQ..&COMPLEV2..DMFU.LOAD&SUFFIX,
+//            DISP=(NEW,CATLG),
+//            SPACE=(CYL,(1,1,10))
+//****************************************************

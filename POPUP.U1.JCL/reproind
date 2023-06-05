@@ -1,0 +1,14 @@
+//ADCDCID JOB 1,CHRIS,MSGCLASS=X,NOTIFY=ADCDC                           JOB00504
+//*
+//STEP1  EXEC PGM=IDCAMS
+//SYSPRINT  DD SYSOUT=*
+//IN       DD PATH='/mainframe/ADCDC.MY.C500.txt',LRECL=500
+//OUT      DD DSN=ADCDC.DEMO.CSTVSMDM.vb,DISP=OLD
+//SYSIN    DD *
+   REPRO INFILE(IN) -
+      OUTFILE(OUT) REUSE
+/*
+//*
+//* TIDY UP (delete all intermediate datasets)
+//POSTDEL  PGM=IEFBR14 or IDCAMS
+//*

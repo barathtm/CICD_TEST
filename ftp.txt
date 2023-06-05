@@ -1,0 +1,7 @@
+open 10.10.1.180
+ibmuser
+sandhata
+cd /u/ibmuser/git-sync-test/POPUP.U1.JCL/
+prompt
+mget *
+quit
