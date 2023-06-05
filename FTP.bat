@@ -24,7 +24,7 @@ for /F "usebackq delims=" %%G in ("dsnames") do (
 )
 
 cd C:\Barath\GitHub\CICD_TEST
-echo ((((( Some sample text being entered here solely for testing purposes ))))) %DATE% %TIME%> README.md
+echo (((((PDS got transfered))))) %DATE% %TIME%> README.md
 
 git add .
 git commit -m "Required files updated."
