@@ -1,24 +1,24 @@
 pipeline {
         agent any
         stages {
-            stage('Test_dsnames') {
+            stage('Gitsync_dsnames') {
                 steps {
                     script {
-                            build job: 'Test_dsnames'
+                            build job: 'Gitsync_dsnames'
                         }
                     }
                }  
-            stage('Test_gitsync_3') {
+            stage('Gitsync_Script1') {
                 steps {
                     script {
-                            build job: 'Test_gitsync_3'
+                            build job: 'Gitsync_Script1'
                         }
                     }
                }  
-            stage('Test_gitsync_3.1') {
+            stage('Gitsync_Script1.1') {
                 steps {
                     script {
-                            build job: 'Test_gitsync_3.1'
+                            build job: 'Gitsync_Script1.1'
                         }
                     }
                }    
