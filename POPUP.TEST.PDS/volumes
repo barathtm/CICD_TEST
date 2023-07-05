@@ -1,6 +1,0 @@
-VOLUME      UNIT    SIZE(GB)     FILES      USED(BYTES)
-ZDT004      SYSDA         48         0      0
-ZDT003      SYSDA         16        10      15999999999
-ZDT001      SYSDA          4         0      0
-ZDT002      SYSDA          4         0      0
-TMP001      SYSDA          4         0      0
