@@ -1,0 +1,51 @@
+//*------------------------------------------------------------------*/
+//*                      PopUp Mainframe Ltd                         */
+//*                                                                  */
+//*   COPYRIGHT ¸ 2020-2021 PopUp Mainframe Ltd ALL RIGHTS RESERVED  */
+//*                                                                  */
+//*          ( Corral datasets to / from Transport Volumes )         */
+//*------------------------------------------------------------------*/
+//E1  EXPORT SYMLIST=(*)
+//*********************************************************************
+//* PROC  FOR  EXPORTING VSAM  TO TRANSPORT VOLUME
+//*********************************************************************
+//ZEXPVSAM PROC VSAMTRAN=SEEJOB,
+//         VSAMIN='SEEJOB',
+//         TRANVOL='SEEJOB',   <---- set to Transport Volume
+//         TRANUNIT='SEEJOB',  <---- set to Transport Unit
+//         SPC='SEEJOB'
+//*
+//*
+//EXPORT   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//*
+//BACKUP   DD DSN=&VSAMTRAN,
+//            DISP=(NEW,CATLG,DELETE),
+//            UNIT=&TRANUNIT,
+//            VOL=SER=&TRANVOL,
+//            SPACE=&SPC
+//*
+//SYSIN    DD *,SYMBOLS=JCLONLY
+  EXPORT &VSAMIN. -
+      OUTFILE(BACKUP) -
+      TEMPORARY -
+      CIMODE
+// PEND
+//*
+//*********************************************************************
+//*NOTE. EXPORT WILL DELETE YOUR INPUT VSAM DATASET WITHOUT TEMPORARY *
+//* Input update required :  TRANVOL (TRANSPORT VOLUME)               *
+//*                          TRANUNIT(TRANSPORT UNIT)                 *
+//*                          VSAMIN   (Input VSAM File)               *
+//*                        VSAMTRAN (Output PS File)                  *
+//* One VSAM    per step.Repeat DS1 statements for each dataset to be *
+//* transported with the appropriate Inputs.                          *
+//*********************************************************************
+//*STEP01 EXEC ZEXPVSAM,
+//*             SRCVOL=SAN002,
+//*            TRANVOL=TMP001,
+//*            TRANUNIT=SYSDA,
+//*            VSAMIN=G.DELP.EMP.KSDS,
+//*            VSAMTRAN=G.DELP.EMP.KSDS.BK4,
+//*            SPC='(CYL,(10,5),RLSE)'
+//*
