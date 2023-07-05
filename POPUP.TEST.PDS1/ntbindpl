@@ -1,0 +1,50 @@
+//ADCDCBP JOB (TEST),CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID   JOB07227
+//********************************************************************
+//*               BIND - BIND THE DB2 PACKAGE                        *
+//********************************************************************
+//BIND01   EXEC PGM=IKJEFT01,
+//             COND=(4,LT),
+//             REGION=4096K
+//STEPLIB  DD  DISP=SHR,
+//             DSN=DSNC10.SDSNLOAD
+//DBRMLIB  DD  DISP=SHR,
+//             DSN=DSNC10.DBCG.DBRMLIB.DATA
+//SYSPRINT DD  SYSOUT=*
+//SYSTSPRT DD  SYSOUT=*
+//SYSUDUMP DD  SYSOUT=*
+//SYSTSIN  DD  *
+    DSN SYSTEM (DBCG)
+    BIND  PLAN (DSNTIAUL) -
+    VALIDATE  (BIND)     -
+    MEMBER (DSNTIAUL)     -
+    ISOLATION (CS) -
+    RELEASE   (COMMIT) -
+    LIBRARY   ('DSNC10.DBCG.DBRMLIB.DATA') -
+    ACTION    (REP) -
+    OWNER     (IBMUSER) -
+    QUALIFIER (IBMUSER) -
+    ENCODING(EBCDIC)
+/*
+//BIND02   EXEC PGM=IKJEFT01,
+//             COND=(4,LT),
+//             REGION=4096K
+//STEPLIB  DD  DISP=SHR,
+//             DSN=DSNC10.SDSNLOAD
+//DBRMLIB  DD  DISP=SHR,
+//             DSN=DSNC10.DBCG.DBRMLIB.DATA
+//SYSPRINT DD  SYSOUT=*
+//SYSTSPRT DD  SYSOUT=*
+//SYSUDUMP DD  SYSOUT=*
+//SYSTSIN  DD  *
+    DSN SYSTEM (DBCG)
+    BIND  PLAN (DSNTIAD) -
+    VALIDATE  (BIND)     -
+    MEMBER (DSNTIAD)     -
+    ISOLATION (CS) -
+    RELEASE   (COMMIT) -
+    LIBRARY   ('DSNC10.DBCG.DBRMLIB.DATA') -
+    ACTION    (REP) -
+    OWNER     (IBMUSER) -
+    QUALIFIER (IBMUSER) -
+    ENCODING(EBCDIC)
+/*
