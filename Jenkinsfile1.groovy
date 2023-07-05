@@ -8,6 +8,13 @@ pipeline {
                         }
                     }
                }  
+            stage('Gitsync_dsnames') {
+                steps {
+                    script {
+                            build job: 'Gitsync_dsnames'
+                        }
+                    }
+               }  
             stage('Gitsync_Script2.1') {
                 steps {
                     script {
