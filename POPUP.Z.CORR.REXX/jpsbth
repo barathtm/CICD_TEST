@@ -1,0 +1,107 @@
+//*------------------------------------------------------------------*/
+//*                      PopUp Mainframe Ltd                         */
+//*                                                                  */
+//*   COPYRIGHT ¸ 2020-2021 PopUp Mainframe Ltd ALL RIGHTS RESERVED  */
+//*                                                                  */
+//*          ( Corral datasets to / from Transport Volumes )         */
+//*------------------------------------------------------------------*/
+//E1  EXPORT SYMLIST=(*)
+//*********************************************************************
+//* PROC  FOR  COPYING PS   FILE(S)
+//*                        FROM  SOURCE VOLUME TO TRANSPORT VOLUME
+//*                   (or) FROM  TRANSPORT VOLUME TO POPUP VOLUME
+//*********************************************************************
+//ZCPYPS   PROC PSIN=SEEJOB,
+//         PSOUT=SEEJOB,
+//         TARGVOL=SEEJOB,
+//         TARGUNIT=SEEJOB
+//*
+//IEBGENER EXEC PGM=IEBGENER
+//SYSPRINT DD SYSOUT=*
+//*                                           /* INPUT FILE */'
+//SYSUT1 DD DSN=&PSIN,
+//             DISP=OLD,
+//             UNIT=&SRCUNIT,
+//             VOL=SER=&SRCVOL
+//*                                           /* OUTPUT FILE */
+//SYSUT2 DD DSN=&PSOUT,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=&TARGUNIT,
+//             VOL=(SER=&TARGVOL),
+//             LIKE=&PSIN
+//SYSIN DD DUMMY
+//*
+// PEND
+//*
+//*********************************************************************
+//* PROC  FOR  COPYING PS   FILE(S) FROM TRANSPORT VOLUME TO SMS
+//* MANAGED POPUP MAINFRAME
+//*********************************************************************
+//ZSCPYPS  PROC PSIN=SEEJOB,
+//         PSOUT=SEEJOB,
+//         SRCVOL=SEEJOB,
+//         SRCUNIT=SEEJOB,
+//         STOCLNM=SEEJOB,
+//         DATACLNM=SEEJOB,
+//         MGMTCLNM=SEEJOB
+//*
+//IEBGENER EXEC PGM=IEBGENER
+//SYSPRINT DD SYSOUT=*
+//*                                           /* INPUT  FILE */
+//SYSUT1 DD DSN=&PSIN,
+//             DISP=OLD,
+//             UNIT=&SRCUNIT,
+//             VOL=SER=&SRCVOL
+//*                                           /* OUTPUT FILE */
+//SYSUT2 DD DSN=&PSOUT,
+//             DISP=(NEW,CATLG,DELETE),
+//             DATACLAS=&DATACLNM,
+//             STORCLAS=&STOCLNM,
+//             MGMTCLAS=&MGMTCLNM,
+//             LIKE=&PSIN
+//SYSIN DD DUMMY
+//*
+// PEND
+//*
+//*********************************************************************
+//* Input update required   |SRCVOL  (Source Volume)                  *
+//* to execute proc ZCPYPS  |SRCUNIT (Source Unit)                    *
+//*    (NON-SMS)            |TARGVOL (Target Volume)                  *
+//*                         |TARUNIT (Target Unit)                    *
+//*                         |PSIN    (Input File)                     *
+//*                         |PSOUT   (Output File)                    *
+//* One dataset per step.Repeat steps for each dataset to be          *
+//* transported with the appropriate Inputs.                          *
+//*********************************************************************
+//* *******************************************************************
+//* ****NOTE :  ENCLOSE THE VOLUMES WITH BRACKETS AS BELOW ************
+//*********************************************************************
+//*STEP1   EXEC ZCPYPS,
+//*            SRCVOL=SAN002,
+//*            SRCUNIT=SYSDA,
+//*            TARGVOL=(SAN001),
+//*            TARGVOL=(SAN001,SAN002),
+//*            TARGUNIT=SYSDA,
+//*            PSIN=ADCDZ.A.FTP.TEST.BK2,
+//*            PSOUT=ADCDZ.A.FTP.TEST.BK3
+//*
+//*********************************************************************
+//* Input update required   |SRCVOL  (Source Volume)                  *
+//* to execute proc ZSCPYPS |SRCUNIT (Source Unit)                    *
+//*    (SMS environment)    |STOCLNM (storage class name)             *
+//*                         |DATACLNM(data class name)                *
+//*                         |MGMTCLNM(management class name)          *
+//*                         |PSIN    (Input File)                     *
+//*                         |PSOUT   (Output File)                    *
+//* One dataset per step.Repeat steps for each dataset to be          *
+//* transported with the appropriate Inputs.                          *
+//*********************************************************************
+//*STEP1   EXEC ZSCPYPS,
+//*           SRCVOL=SRCVOL,
+//*           SRCUNIT=SYSDA,
+//*           STOCLNM=STOCLAS1,
+//*           DATACLNM=DC1,
+//*           MGMTCLNM=DEFAULT,
+//*           PSIN=ADCDZ.A.FTP.TEST.BK2,
+//*           PSOUT=ADCDZ.A.FTP.TEST.BK3
+//*
